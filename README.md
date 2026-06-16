@@ -6,7 +6,7 @@
 ![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![Deployed on Vercel](https://img.shields.io/badge/Vercel-live-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-**🔗 Live demo:** _add your Vercel URL here_
+**🔗 Live demo:** https://trade-charges-calculator.vercel.app/
 
 ![The Real Cost — Indian trade charges calculator](screenshot/preview.png)
 
