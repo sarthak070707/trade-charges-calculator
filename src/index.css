@@ -1,0 +1,464 @@
+/* ------------------------------------------------------------------ *
+ * The Real Cost — design tokens
+ * Concept: a trade's charges are a bill, so the result reads as a
+ * contract-note / receipt. Monospace ledger numbers, dotted leaders,
+ * a torn perforated stub, a highlighter swipe on the lesson.
+ * ------------------------------------------------------------------ */
+:root {
+  --paper: #fcfcfa;
+  --bg: #e4e7e1;
+  --ink: #16181d;
+  --ink-soft: #5c6066;
+  --line: #d9dad3;
+  --up: #0e7a52;
+  --down: #c23a2b;
+  --highlight: #f4d35e; /* highlighter on the lesson */
+  --radius: 14px;
+  --display: "Space Grotesk", system-ui, sans-serif;
+  --body: "Inter", system-ui, sans-serif;
+  --mono: "Space Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(22, 24, 29, 0.05) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+  color: var(--ink);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) 3rem;
+}
+
+/* ---------------- masthead ---------------- */
+.masthead {
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.mark {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.mark-glyph {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
+  line-height: 1;
+  width: clamp(2.6rem, 9vw, 4rem);
+  height: clamp(2.6rem, 9vw, 4rem);
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+  flex: none;
+}
+
+.masthead h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.9rem, 6vw, 2.9rem);
+  line-height: 1;
+  margin: 0.15em 0 0;
+}
+
+.tagline {
+  margin: 0.55rem 0 0;
+  max-width: 46ch;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+/* ---------------- layout ---------------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 760px) {
+  .grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: start;
+  }
+}
+
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+/* ---------------- inputs ---------------- */
+.seg-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.seg {
+  border: 0;
+  background: transparent;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.6rem;
+  border-radius: 7px;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: background 0.15s, color 0.15s;
+}
+
+.seg.on {
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(22, 24, 29, 0.12);
+}
+
+.field {
+  display: block;
+  margin-bottom: 1.1rem;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  margin-bottom: 0.4rem;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input-wrap:focus-within {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(22, 24, 29, 0.1);
+}
+
+.prefix {
+  padding: 0 0.2rem 0 0.85rem;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+}
+
+.input-wrap input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  padding: 0.7rem 0.85rem 0.7rem 0.4rem;
+  color: var(--ink);
+  width: 100%;
+}
+
+.pill-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pill {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 9px;
+  padding: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: all 0.15s;
+}
+
+.pill.on {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.assumption {
+  margin: 1.25rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  border-top: 1px dashed var(--line);
+  padding-top: 0.9rem;
+}
+
+/* ---------------- receipt ---------------- */
+.receipt {
+  position: relative;
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.result-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.net {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 11vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0.35rem 0 0;
+}
+
+.net-up {
+  color: var(--up);
+}
+.net-down {
+  color: var(--down);
+}
+
+.gross-line {
+  margin-top: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+/* perforated tear */
+.perf {
+  height: 0;
+  border-top: 2px dotted var(--line);
+  margin: 1.4rem -1.75rem;
+  position: relative;
+}
+.perf span::before,
+.perf span::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg);
+}
+.perf span::before {
+  left: -10px;
+}
+.perf span::after {
+  right: -10px;
+}
+
+.lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.line {
+  padding: 0.5rem 0;
+}
+.line.dim {
+  opacity: 0.4;
+}
+
+.line-main {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.3rem;
+}
+
+.line-name {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+}
+
+.q {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  font-size: 0.7rem;
+  display: inline-grid;
+  place-items: center;
+  color: var(--ink-soft);
+  line-height: 1;
+}
+
+.line-name:hover .q {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.leader {
+  flex: 1 1 auto;
+  border-bottom: 1px dotted var(--line);
+  transform: translateY(-3px);
+}
+
+.line-amt {
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.line-info {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.75rem;
+  padding-top: 0.85rem;
+  border-top: 2px solid var(--ink);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.total-row span:last-child {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* the lesson — a highlighter swipe */
+.insight {
+  margin-top: 1.4rem;
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.insight-num {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  flex: none;
+  background: linear-gradient(
+    transparent 18%,
+    var(--highlight) 18% 88%,
+    transparent 88%
+  );
+  padding: 0 0.2rem;
+  white-space: nowrap;
+}
+
+.insight p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* ---------------- footer ---------------- */
+.footer {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.credits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.built-by {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.email {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.email:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.dh-button {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.7rem 1.15rem;
+  border-radius: 10px;
+  transition: transform 0.12s, opacity 0.15s;
+}
+.dh-button:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+/* focus visibility */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
